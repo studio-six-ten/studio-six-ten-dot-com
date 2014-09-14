@@ -1,3 +1,9 @@
-(ns studio_six_ten_dot_com.mainjs)
+(ns studio_six_ten_dot_com.mainjs
+  (:use [jayq.core :only [$ css html]]))
 
-(.write js/document "<p>And hello from ClojureScript!</p>")
+(def $document ($ js/document))
+
+(.write js/document (str "document.height: "
+                         (.height $document)
+                         "px; document.width: "
+                         (.width $document) "px."))

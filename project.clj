@@ -6,7 +6,8 @@
                  [compojure "1.1.8"]
                  [ring/ring-devel "1.3.1"]
                  [ring/ring-core "1.3.1"]
-                 [http-kit "2.1.16"]]
+                 [http-kit "2.1.16"]
+                 [jayq "2.5.2"]]
   :main studio_six_ten_dot_com.handler
   :plugins [[lein-cljsbuild "1.0.3"]]
   :profiles
@@ -14,5 +15,5 @@
                         [ring-mock "0.1.5"]]}}
   :cljsbuild {:builds [{:source-paths ["src-cljs"]
                         :compiler {:output-to "resources/public/main.js"
-                                   :optimizations :whitespace
+                                   :optimizations :simple
                                    :pretty-print true}}]})

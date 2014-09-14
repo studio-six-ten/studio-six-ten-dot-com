@@ -12,11 +12,13 @@
   (html5
    [:html
     [:head
-     [:title (str "Studio Six-Ten I.D. Inc.")]]
+     [:title (str "Studio Six-Ten I.D. Inc.")]
+     (include-css "main.css")]
     [:body
      [:h1.title (str "Hello? This is a little different...")]
      [:div#splashScene]
-     (include-js "main.js")]]))
+     (include-js "//code.jquery.com/jquery-1.11.0.min.js"
+                 "main.js")]]))
 
 (defroutes app-routes
   (GET "/" [req] (splash req))
