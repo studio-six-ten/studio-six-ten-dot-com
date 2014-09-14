@@ -3,7 +3,31 @@
 
 (def $document ($ js/document))
 
-(.write js/document (str "document.height: "
-                         (.height $document)
-                         "px; document.width: "
-                         (.width $document) "px."))
+(def $scene ($ :#splashScene))
+
+(def banner-width 80)
+
+(def banner-height 15)
+
+(def banner-text "#### ====================================================================== ####                                                                                      \"8P\"\"\"\"\"\"8                            e\"\"\"\"e    e88   e8\"\"\"\"e e\"\"8               \"8e      eeeee e   e eeeee e  eeeee  8    8      8   8    d8  ee8                 \"8e      8   8   8 8   8 8  8  88  8      88   8   8   8 8    88                  \"8e    8e  8e  8 8e  8 8e 8   8  8eeeee      8   8  8  8 eee88                 e8\"     88  88  8 88  8 88 8   8  8    8 88   8   8 8   8                     e8\"       88  88ee8 88ee8 88 8eee8  8    8    e8888 8P    8                   d8beeeeee8                            8eeee8    88888 8eeeee8                                                                                                     STUDIO SIX-TEN INTERACTIVE DEVELOPMENT INC. --- TORONTO, CANADA                                                                                        \n#### ====================================================================== ####                                                                               \n#### ==== INTERACTIVE DEVELOPMENT IN COMMON LISP, CLOJURE, and PYTHON! ==== ####\n                                                                                \n")
+
+(let [cols (quot (.width $document) 10)
+      rows (quot (.height $document) 14)
+      offset-x (- (quot cols 2) (quot banner-width 2))
+      offset-y (- (quot rows 2) (quot banner-height 2))
+      banner-list (concat banner-text)]
+  (loop [i 1]
+    (if (<= i rows)
+      (do (loop [j 1]
+            (if (<= j cols)
+              (let [id (str i "." j)
+                    banner-xy (+ (* (- i offset-y) banner-width) (- j offset-x))]
+                (if (and (>= j offset-x)
+                         (< j (+ offset-x banner-width))
+                         (>= i offset-y)
+                         (< i (+ offset-y banner-height)))
+                  (.append $scene (str "<div id='" id "' class='cell banner'>" (nth banner-list banner-xy "1") "</div>"))
+                  (.append $scene (str "<div id='" id "' class='cell'>0</div>")))
+                (recur (+ j 1)))))
+          (.append $scene (str "<br>"))
+          (recur (+ i 1))))))

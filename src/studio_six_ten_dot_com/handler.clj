@@ -15,7 +15,6 @@
      [:title (str "Studio Six-Ten I.D. Inc.")]
      (include-css "main.css")]
     [:body
-     [:h1.title (str "Hello? This is a little different...")]
      [:div#splashScene]
      (include-js "//code.jquery.com/jquery-1.11.0.min.js"
                  "main.js")]]))
