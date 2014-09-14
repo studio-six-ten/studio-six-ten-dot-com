@@ -6,15 +6,23 @@ Powered by Clojure, ClojureScript, Compojure, HTTP-Kit, Hiccup, and Stencil.
 
 ## Prerequisites
 
-You will need [Leiningen][1] 1.7.0 or above installed.
+You will need [Leiningen][1] 2.0.0 or above installed.
 
 [1]: https://github.com/technomancy/leiningen
+
+Compile the ClojureScript files:
+
+```sh
+lein cljsbuild once
+```
 
 ## Running
 
 To start a web server for the application, run:
 
-    lein ring server
+```sh
+lein run
+```
 
 ## License
 
