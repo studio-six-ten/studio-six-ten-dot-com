@@ -1,5 +1,6 @@
 (ns studio_six_ten_dot_com.mainjs
-  (:use [jayq.core :only [$ css html]]))
+  (:use [jayq.core :only [$ css html]]
+        [jayq.util :only [wait]]))
 
 (def $document ($ js/document))
 
@@ -20,14 +21,26 @@
     (if (<= i rows)
       (do (loop [j 1]
             (if (<= j cols)
-              (let [id (str i "." j)
+              (let [id (str i "-" j)
                     banner-xy (+ (* (- i offset-y) banner-width) (- j offset-x))]
                 (if (and (>= j offset-x)
                          (< j (+ offset-x banner-width))
                          (>= i offset-y)
                          (< i (+ offset-y banner-height)))
                   (.append $scene (str "<div id='" id "' class='cell banner'>" (nth banner-list banner-xy "1") "</div>"))
-                  (.append $scene (str "<div id='" id "' class='cell'>" (rand-int 2) "</div>")))
+                  (.append $scene (str "<div id='" id "' class='cell bg'>" (rand-int 2) "</div>")))
                 (recur (+ j 1)))))
           (.append $scene (str "<br>"))
           (recur (+ i 1))))))
+
+(defn animate-bg []
+  (let [opacity 0]
+    (.text ($ :.cell.bg) (str \space))
+    (.each ($ :.cell.bg)
+           (fn [i]
+             (this-as this
+                      (.text ($ this) (str (rand-int 2))))))
+    (wait 250 animate-bg)
+    false))
+
+(.addEventListener js/window "load" animate-bg false)

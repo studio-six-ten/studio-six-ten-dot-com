@@ -3,6 +3,7 @@
   :url "http://studio-six-ten.com"
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/clojurescript "0.0-2322"]
+                 [org.clojure/core.async "0.1.319.0-6b1aca-alpha"]
                  [compojure "1.1.8"]
                  [ring/ring-devel "1.3.1"]
                  [ring/ring-core "1.3.1"]
