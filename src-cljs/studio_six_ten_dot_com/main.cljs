@@ -27,7 +27,7 @@
                          (>= i offset-y)
                          (< i (+ offset-y banner-height)))
                   (.append $scene (str "<div id='" id "' class='cell banner'>" (nth banner-list banner-xy "1") "</div>"))
-                  (.append $scene (str "<div id='" id "' class='cell'>0</div>")))
+                  (.append $scene (str "<div id='" id "' class='cell'>" (rand-int 2) "</div>")))
                 (recur (+ j 1)))))
           (.append $scene (str "<br>"))
           (recur (+ i 1))))))
