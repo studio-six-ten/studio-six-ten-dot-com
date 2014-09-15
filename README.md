@@ -2,6 +2,8 @@
 
 Source repository of the official Studio Six-Ten I.D. Inc. web site.
 
+**STATUS:** Currently under development.
+
 Powered by Clojure, ClojureScript, Compojure, HTTP-Kit, Hiccup, and Stencil.
 
 ## Prerequisites
