@@ -50,15 +50,20 @@
         (wait 90 animate-bg))
     false))
 
+(defn cleanup []
+  (.removeEventListener js/window "load" draw-matrix)
+  (.removeEventListener js/window "load" animate-bg)
+  (set! keep-alive? false)
+  (.html $scene ""))
+
 (.addEventListener js/window "load" draw-matrix false)
 
 (.addEventListener js/window "load" animate-bg false)
 
-(.addEventListener js/window "resize" (fn []
-                                        (.removeEventListener js/window "load" draw-matrix)
-                                        (.removeEventListener js/window "load" animate-bg)
-                                        (set! keep-alive? false)
-                                        (.html $scene "")
-                                        (draw-matrix)
-                                        (set! keep-alive? true)
-                                        (animate-bg)))
+(.addEventListener js/window "resize" cleanup false)
+
+(.addEventListener js/window "resize" draw-matrix false)
+
+(.addEventListener js/window "resize" (fn [] (set! keep-alive? true)))
+
+(.addEventListener js/window "resize" animate-bg false)
