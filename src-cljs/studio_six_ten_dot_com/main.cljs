@@ -12,6 +12,8 @@
 
 (def banner-text "#### ====================================================================== ####                                                                                       \"8P\"\"\"\"\"\"8                            e\"\"\"\"e    e88   e8\"\"\"\"e e\"\"8               \"8e      eeeee e   e eeeee e  eeeee  8    8      8   8    d8  ee8                 \"8e      8   8   8 8   8 8  8  88  8      88   8   8   8 8    88                  \"8e    8e  8e  8 8e  8 8e 8   8  8eeeee      8   8  8  8 eee88                 e8\"     88  88  8 88  8 88 8   8  8    8 88   8   8 8   8                     e8\"       88  88ee8 88ee8 88 8eee8  8    8    e8888 8P    8                   d8beeeeee8                            8eeee8    88888 8eeeee8                                                                                                     STUDIO SIX-TEN INTERACTIVE DEVELOPMENT INC --- TORONTO, CANADA                                                                                        \n#### ====================================================================== ####                                                                               \n#### ==== INTERACTIVE DEVELOPMENT IN COMMON LISP, CLOJURE, and PYTHON. ==== ####\n                                                                                \n")
 
+(def keep-alive? true)
+
 (defn draw-matrix []
   (let [cols (quot (.width $document) 12)
         rows (quot (.height $document) 21)
@@ -44,7 +46,8 @@
            (fn [i]
              (this-as this
                       (.css ($ this) "opacity" (+ 0.82 (mod (rand) 0.18))))))
-    (wait 90 animate-bg)
+    (when keep-alive?
+        (wait 90 animate-bg))
     false))
 
 (.addEventListener js/window "load" draw-matrix false)
@@ -54,5 +57,8 @@
 (.addEventListener js/window "resize" (fn []
                                         (.removeEventListener js/window "load" draw-matrix)
                                         (.removeEventListener js/window "load" animate-bg)
+                                        (set! keep-alive? false)
                                         (.html $scene "")
-                                        (draw-matrix)))
+                                        (draw-matrix)
+                                        (set! keep-alive? true)
+                                        (animate-bg)))
