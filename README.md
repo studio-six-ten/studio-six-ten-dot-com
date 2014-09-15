@@ -1,4 +1,4 @@
-# STUDIO-SIX-TEN-DOT-COM
+# STUDIO-SIX-TEN-dot-com
 
 Source repository of the official Studio Six-Ten I.D. Inc. web site.
 
@@ -9,6 +9,8 @@ Powered by Clojure, ClojureScript, Compojure, HTTP-Kit, Hiccup, and Stencil.
 You will need [Leiningen][1] 2.0.0 or above installed.
 
 [1]: https://github.com/technomancy/leiningen
+
+## Setup
 
 Compile the ClojureScript files:
 
