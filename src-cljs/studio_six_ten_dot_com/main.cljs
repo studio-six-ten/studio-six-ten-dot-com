@@ -40,7 +40,11 @@
            (fn [i]
              (this-as this
                       (.text ($ this) (str (rand-int 2))))))
-    (wait 250 animate-bg)
+    (.each ($ :.cell.banner)
+           (fn [i]
+             (this-as this
+                      (.css ($ this) "opacity" (+ 0.82 (mod (rand) 0.18))))))
+    (wait 90 animate-bg)
     false))
 
 (.addEventListener js/window "load" animate-bg false)
