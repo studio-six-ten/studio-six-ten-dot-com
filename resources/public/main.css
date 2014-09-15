@@ -29,7 +29,7 @@ body {
 #splashScene .cell {
     font-family: "Glass TTY vt220", "Terminus", "Droid Sans Mono", Consolas, "Courier New", Courier, monospace;
     font-size: 21px;
-    color: #272727;
+    color: #333333;
     display: inline-block;
     position: relative;
     width: 12px;
@@ -41,5 +41,5 @@ body {
 }
 
 #splashScene .cell.banner {
-    color: #990000;
+    color: #FF0000;
 }
